@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>10초 챌린지</title>
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/play.css" />
+    <link rel="stylesheet" href="/static/css/music-player.css" />
+
+    <!-- ✅ 스크립트: DOM 생성 이후 실행되도록 defer, 그리고 '한 번만' 로드 -->
+    <script type="module" src="/static/js/play_main.js" defer></script>
+    <script src="/static/js/play_cam_guide.js" defer></script>
+    <script src="/static/js/music-player.js" defer></script>
+
+    <!-- Pose libs -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.13.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+  </head>
+  <body class="hero--gradient">
+    <div class="container">
+      <h2>10-Second Challenge</h2>
+
+      <div class="content">
+        <div class="left-box">
+          <!-- 카운트다운 -->
+          <div id="countdown">
+            남은 시간: <span id="countdownValue">10</span>
+          </div>
+
+          <!-- 웹캠 -->
+          <div class="webcam-wrapper">
+            <!-- 👇 가이드 스크립트가 찾는 ID (필수) -->
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="overlay"></canvas>
+          </div>
+        </div>
+
+        <div class="right-box">
+          <span id="target" class="targetValue">비교 사진</span>
+          <div class="target-image-wrapper">
+            <!-- 👇 가이드 스크립트가 찾는 ID (필수) -->
+            <img id="targetImage" alt="Target Skeleton" />
+          </div>
+          <h2>
+            현재 정확도: <span id="accuracyNow">0%</span> /
+            최고 정확도: <span id="accuracyBest">0%</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오버레이들 -->
+    <div id="loadingOverlay" class="overlay hidden">
+      <div id="loadingText">로딩중...</div>
+    </div>
+
+    <div id="roundOverlay" class="overlay hidden">
+      <div id="roundText"></div>
+    </div>
+
+    <div id="endOverlay" class="overlay hidden">
+      <div id="endText"></div>
+    </div>
+
+    <div id="savingOverlay" class="overlay hidden" style="flex-direction:column;">
+      <div id="savingText">영상 저장 중...</div>
+      <div class="progress-bar">
+        <div id="savingProgress"></div>
+      </div>
+    </div>
+    <!-- 중복으로 들어가 있던 아래 2줄은 삭제함!.
+    <script type="module" src="/static/js/play_main.js"></script>
+    <script src="/static/js/music-player.js"></script>
+    -->
+  </body>
+</html>

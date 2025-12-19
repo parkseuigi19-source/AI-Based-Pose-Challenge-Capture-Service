@@ -1,0 +1,217 @@
+/* ===============================
+   전체 공통 스타일
+================================= */
+
+/* 전체 배경 */
+body {
+  margin: 0;
+  padding: 0;
+  background: url("/static/images/common/background.jpg") no-repeat center center fixed;
+  background-size: cover;   /* 화면 크기에 꽉 채우기 */
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* 컨테이너 중앙 정렬 */
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 중앙에 컨텐츠 배치 */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   GOLD CTA (Option B · final)
+   ========================= */
+
+/* 기본 버튼 */
+button{
+  background: linear-gradient(180deg, #FFD60A, #FF6600);
+  color: #1b1b1b;
+  font-weight: 900;
+  border: 1px solid rgba(255,200,50,.65);
+  border-radius: 12px;
+
+  /* 기본 사이즈(리스트/세팅 페이지에 적합) */
+  padding: 14px 24px;
+  font-size: 17px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background .25s ease;
+  /* 은은한 글로우 + 살짝 눌림 보정 */
+  box-shadow:
+    0 6px 18px rgba(255,200,50,.34),
+    0 0 0 1px rgba(255,214,10,.25) inset,
+    0 2px 0 rgba(0,0,0,.18) inset;
+}
+
+button:hover{
+  background: linear-gradient(180deg, #FFE066, #FFBF33);
+  box-shadow:
+    0 10px 26px rgba(255,200,50,.48),
+    0 0 0 1px rgba(255,255,255,.28) inset;
+  filter: brightness(1.02);
+  transform: translateY(-2px);
+}
+
+button:active{
+  transform: translateY(1px);
+  filter: brightness(.98);
+}
+
+button:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255,214,10,.35),
+    0 10px 26px rgba(255,200,50,.48);
+}
+
+button:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 히어로(메인)용 크게 — 시작하기 CTA 등에 사용 */
+button.btn--lg{
+  padding: 18px 36px;
+  font-size: 20px;
+  border-radius: 14px;
+  box-shadow:
+    0 12px 34px rgba(255,200,50,.45),
+    0 0 0 2px rgba(255,255,255,.22) inset;
+}
+
+@media (min-width: 1024px){
+  button.btn--lg{
+    padding: 20px 42px;
+    font-size: 22px;
+  }
+}
+
+/* 버튼 묶음 간격(선택) */
+.button-wrapper{ margin-top: 28px; }
+
+
+
+/* 링크 초기화 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 기본 제목 스타일 */
+h1, h2, h3 {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* 이미지 반응형 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* === Challenge Theme: Animated Hero (match main) === */
+/* 메인과 동일한 애니메이티드 그라디언트 */
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 메인처럼 사용: <body class="hero--gradient"> */
+body.hero--gradient{
+  background: linear-gradient(-45deg, #ff6600, #ff3d00, #0A192F, #112D4E);
+  background-size: 400% 400%;
+  animation: gradientBG 14s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* 라이트 스팟 + 비네트로 중앙 집중 (메인 느낌) */
+body.hero--gradient::before{
+  content:"";
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(42% 32% at 50% 26%,
+      rgba(255,255,255,0.19) 0%,
+      rgba(255,255,255,0.08) 36%,
+      rgba(0,0,0,0.00) 60%),
+    linear-gradient(180deg,
+      rgba(0,0,0,0.35) 0%,
+      rgba(0,0,0,0.58) 68%,
+      rgba(0,0,0,0.76) 100%);
+}
+
+/* 아주 미세한 ‘움직이는 하이라이트’로 생동감 (과하지 않게) */
+body.hero--gradient::after{
+  content:"";
+  position: fixed; left:-20%; top:-10%; width:140%; height:140%;
+  background: radial-gradient(60% 12% at 50% -10%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 100%);
+  transform: rotate(2deg);
+  animation: heroSweep 8s ease-in-out infinite alternate;
+  pointer-events:none; z-index:0;
+}
+@keyframes heroSweep {
+  0%   { transform: translateY(0) rotate(2deg);   opacity: .5; }
+  100% { transform: translateY(18px) rotate(2deg); opacity: .25; }
+}
+
+/* 공통 컨텐츠는 배경 레이어 위로 */
+main, .center-container, header, footer { position: relative; z-index: 1; }
+
+/* === HERO GRADIENT: soften vignette + brighter spotlight === */
+/* 어두워지는 강도를 낮추고, 상단 중앙 스포트라이트를 살짝 키워 자연스럽게 */
+body.hero--gradient::before{
+  content:"";
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    /* 상단-중앙 라이트 스팟(조금 더 밝게) */
+    radial-gradient(48% 34% at 50% 22%,
+      rgba(255,255,255,0.22) 0%,
+      rgba(255,255,255,0.10) 38%,
+      rgba(0,0,0,0.00) 62%),
+    /* 전체 비네트 (알파를 전반적으로 낮춤) */
+    linear-gradient(180deg,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.40) 66%,
+      rgba(0,0,0,0.58) 100%);
+}
+
+/* 아주 미세한 하이라이트 스윕은 더 은은하게 */
+body.hero--gradient::after{
+  content:"";
+  position: fixed; left:-20%; top:-12%; width:140%; height:140%;
+  background: radial-gradient(60% 12% at 50% -10%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 100%);
+  transform: rotate(2deg);
+  animation: heroSweep 8s ease-in-out infinite alternate;
+  opacity: .35;   /* 이전보다 낮춤 */
+  pointer-events:none; z-index:0;
+}
+
+/* 필요하면 더 밝게: body에 'vignette--soft' 추가 */
+body.hero--gradient.vignette--soft::before{
+  background:
+    radial-gradient(52% 36% at 50% 22%,
+      rgba(255,255,255,0.26) 0%,
+      rgba(255,255,255,0.12) 40%,
+      rgba(0,0,0,0.00) 64%),
+    linear-gradient(180deg,
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.32) 62%,
+      rgba(0,0,0,0.48) 100%);
+}

@@ -1,0 +1,165 @@
+/* setting.html 전용 */
+.setting-group {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    padding: 12px 20px;
+    background-color: #f26b27;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button-group button:hover {
+    background-color: #d85a1f;
+}
+
+/* 선택된 버튼 스타일 */
+.button-group button.active {
+    background-color: #ff9e5b;
+}
+
+/* 시작 버튼 오른쪽 하단 고정 */
+.start-wrapper {
+    bottom: 30px;
+    right: 30px;
+    width: auto;
+    max-width: 200px;
+}
+
+.start-wrapper button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+}
+
+/* 모바일 대응 */
+@media screen and (max-width: 480px) {
+    .button-group button {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+    .start-wrapper {
+        max-width: 150px;
+    }
+}
+
+
+/* === Pages under hero--gradient (Setting / Play) === */
+
+/* 무거운 ‘유리 카드’ 제거: 깔끔한 투명 레이아웃 */
+body.hero--gradient .center-container{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  max-width: 980px;
+  margin: 96px auto 120px;
+  padding: 0 16px;
+  text-align: center;
+}
+
+/* 타이틀 타이포 메인 톤과 일치 */
+body.hero--gradient .center-container h1,
+body.hero--gradient .center-container .title{
+  color: #fff;
+  letter-spacing: .3px;
+  text-shadow: 0 0 24px rgba(255,102,0,.28);
+  margin-bottom: 26px;
+}
+
+/* 버튼 영역 간격 */
+body.hero--gradient .center-container .button-group,
+body.hero--gradient .center-container .button-wrapper,
+body.hero--gradient .center-container .row{
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 14px 16px; margin: 16px 0 22px;
+}
+
+/* 버튼: 메인 CTA와 동일 계열의 네온/글로우 */
+body.hero--gradient .center-container button{
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all .25s ease;
+}
+
+body.hero--gradient .center-container button:hover{
+  background: rgba(255,255,255,0.22);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+}
+
+/* 선택된 버튼은 살짝 더 밝고, 테두리 강조 */
+body.hero--gradient .center-container button.active,
+body.hero--gradient .center-container button[aria-pressed="true"]{
+  background: linear-gradient(180deg, #ff962e, #ff7b1a);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.22) inset,
+    0 10px 28px rgba(0,0,0,.45),
+    0 0 26px rgba(255,153,51,.55);
+}
+
+/* 세부 캡션(예: ‘인원 선택’, ‘사진 선택’)은 세컨더리 톤로 */
+body.hero--gradient .center-container p,
+body.hero--gradient .center-container .caption,
+body.hero--gradient .center-container h2{
+  color: rgba(255,255,255,.88);
+  text-shadow: 0 2px 12px rgba(0,0,0,.35);
+  margin: 8px 0 10px;
+}
+
+/* 모바일 여백 */
+@media (max-width: 640px){
+  body.hero--gradient .center-container{ margin: 72px auto 96px; }
+}
+
+
+/* === 게임 시작 버튼만 메인 CTA(골드)로 강제 적용 — setting.css 맨 아래에 붙이기 === */
+.center-container .start-wrapper button {
+  background: linear-gradient(180deg, #FFD60A, #FF6600) !important;
+  color: #1b1b1b !important;
+  font-weight: 900;
+  border: 1px solid rgba(255,200,50,.65) !important;
+  border-radius: 14px;
+  padding: 16px 32px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow:
+    0 8px 26px rgba(255,200,50,.45),
+    0 0 0 2px rgba(255,255,255,.18) inset !important;
+  transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background .25s ease;
+}
+
+.center-container .start-wrapper button:hover {
+  background: linear-gradient(180deg, #FFE066, #FFBF33) !important;
+  box-shadow:
+    0 12px 34px rgba(255,200,50,.55),
+    0 0 0 2px rgba(255,255,255,.25) inset !important;
+  transform: translateY(-2px);
+}
+
+.center-container .start-wrapper button:active {
+  transform: translateY(1px);
+  filter: brightness(.96);
+}

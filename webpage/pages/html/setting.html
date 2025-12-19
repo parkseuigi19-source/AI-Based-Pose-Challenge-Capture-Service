@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>10-second Challenge</title>
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/setting.css">
+        <link rel="stylesheet" href="/static/css/music-player.css">
+        <script src="/static/js/setting.js" defer></script>
+    </head>
+    <body class="hero--gradient">
+        <div class="container">
+            <div class="center-container">
+                <h1>게임 설정</h1>
+
+                <!-- 인원 선택 -->
+                <div class="setting-group">
+                    <h2>인원 선택</h2>
+                    <div class="button-group" id="playerButtons">
+                        <button data-value="1">1인</button>
+                        <button data-value="2">2인</button>
+                        <button data-value="3">3인</button>
+                        <button data-value="4">4인</button>
+                    </div>
+                </div>
+
+                <!-- 사진 선택 -->
+                <div class="setting-group">
+                    <h2>사진 선택</h2>
+                    <div class="button-group" id="photoButtons">
+                        <button data-value="1">1장</button>
+                        <button data-value="2">2장</button>
+                        <button data-value="3">3장</button>
+                        <button data-value="4">4장</button>
+                        <button data-value="5">5장</button>
+                    </div>
+                </div>
+
+                <!-- 시작 버튼 -->
+                <div class="button-wrapper start-wrapper">
+                    <button id="startGameButton">게임시작</button>
+                </div>
+            </div>
+        </div>
+        <script src="/static/js/music-player.js"></script>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-second Challenge</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/result.css">
+    <link rel="stylesheet" href="/static/css/music-player.css">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="hero--gradient">
+    <div class="container">
+      <div class="center-container">
+        <h2 class="result-title">최종 결과</h2>
+
+        <div class="result-content">
+          <!-- 캡처 사진 -->
+          <div class="media-block image-container">
+            <span id="prevBtn" class="nav-arrow left-arrow">⟨</span>
+            <div class="media-caption">캡처 사진</div>
+            <img src="" alt="사용자 캡처" id="userImage" class="result-media">
+          </div>
+
+          <!-- 비교 사진 -->
+          <div class="media-block image-container">
+            <div class="media-caption">비교 사진</div>
+            <img src="" alt="미션 예시" id="targetImage" class="result-media">
+            <span id="nextBtn" class="nav-arrow right-arrow">⟩</span>
+          </div>
+
+          <!-- 촬영 영상 -->
+          <div class="media-block capture-video">
+            <div class="media-caption">촬영 영상</div>
+            <video id="recordedVideo" autoplay loop muted class="result-media">
+              <source src="" type="video/mp4">비디오를 재생할 수 없습니다.
+            </video>
+            <div class="accuracy-box">
+              <p>정확도: <span id="currentAccuracy">0%</span> / 최고: <span id="bestAccuracy">0%</span></p>
+            </div>
+          </div>
+
+          <!-- 오른쪽 박스 -->
+          <div class="result-right">
+            <div class="filter-controls">
+              <p>🎨 비디오 필터</p>
+              <div id="effectButtons" class="filter-buttons"></div>
+              <button id="downloadFilteredBtn" class="filter-download-btn">📥 영상 다운로드</button>
+            </div>
+            <div class="result-buttons">
+              <div class="button-wrapper">
+                <button onclick="location.href='/setting'">재도전</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.resultData = JSON.parse('{{ data | tojson | safe }}');
+    </script>
+    <script src="/static/js/result.js"></script>
+    <script src="/static/js/video_effects.js"></script>
+    <script src="/static/js/music-player.js"></script>
+    
+    <!-- 🔍 이미지 확대 모달 -->
+    <div id="zoomModal" class="zoom-modal" aria-hidden="true">
+      <div class="zoom-backdrop" id="zoomBackdrop"></div>
+      <div class="zoom-content" id="zoomContent" role="dialog" aria-modal="true">
+        <img id="zoomImage" alt="확대 이미지" draggable="false" />
+        <div class="zoom-controls" aria-label="확대/축소 컨트롤">
+          <button id="zoomInBtn" type="button" aria-label="확대">+</button>
+          <button id="zoomOutBtn" type="button" aria-label="축소">-</button>
+          <button id="zoomResetBtn" type="button" aria-label="리셋">리셋</button>
+          <button id="zoomCloseBtn" type="button" aria-label="닫기">닫기</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
